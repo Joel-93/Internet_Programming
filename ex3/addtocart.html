@@ -21,15 +21,19 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
 
-        .success-icon {
-            font-size: 80px;
-            color: #28a745;
-        }
-
-        h1 {
+        #main-heading {
             margin: 20px 0 10px;
             color: #0e6655;
             font-size: 32px;
+        }
+
+        a[href="buynow.html"] {
+            background-color: #ff9800;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            color: #28a745;
         }
 
         p {
@@ -57,7 +61,7 @@
 <body>
     <div class="success-container">
         <div class="success-icon">✅</div>
-        <h1>Your product is added successfully!</h1>
+        <h1 id="main-heading">Your product is added successfully!</h1>
         <p>You can continue shopping or proceed to checkout.</p>
         <a href="index.html" class="btn">Continue Shopping</a>
         <a href="buynow.html" class="btn">Proceed to Buy</a>
