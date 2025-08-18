@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            margin: auto;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: auto;
+        }
+
+        .gender-group {
+            margin-top: 10px;
+        }
+
+        .gender-group input {
+            width: auto;
+            margin-left: 10px;
+        }
+
+        .checkbox-group {
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 15px;
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        .agree {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            accent-color: #28a745;
+        }
+    </style>
+</head>
+
+<body>
+    <form name="form" onsubmit="return validation(this)">
+        <h2>User Registration</h2>
+
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" placeholder="Enter your name">
+
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" placeholder="Enter your email">
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" name="phone" id="phone" placeholder="10-digit phone number">
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" placeholder="Enter a strong password">
+
+        <label for="credit">Credit Card Number:</label>
+        <input type="text" name="credit" id="credit" placeholder="16-digit card number">
+
+        <div class="gender-group">
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="male"> Male
+            <input type="radio" name="gender" value="female"> Female
+        </div>
+
+        <label for="dept">Department:</label>
+        <select name="dept" id="dept">
+            <option value="">Select Department</option>
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="MECH">MECH</option>
+        </select>
+        <label class="agree">
+            <input type="checkbox" name="agree" id="agree">
+            I agree to the terms
+        </label>
+
+
+        <button type="submit" id="login">Register</button>
+    </form>
+
+    <script>
+        function validation(form) {
+            var nameRegex = /^[a-zA-Z ]+$/;
+            var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+            var phoneRegex = /^[0-9]{10}$/;
+            var passRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/;
+            var creditRegex = /^[0-9]{16}$/;
+
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var password = document.getElementById("password").value;
+            var credit = document.getElementById("credit").value;
+
+            if (!nameRegex.test(username)) {
+                alert("Enter a valid name (letters only)");
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Enter a valid email address");
+                return false;
+            }
+            if (!phoneRegex.test(phone)) {
+                alert("Phone number must be 10 digits");
+                return false;
+            }
+            if (!passRegex.test(password)) {
+                alert("Password must be at least 8 chars, include uppercase, lowercase, digit & special char");
+                return false;
+            }
+
+            if (!creditRegex.test(credit)) {
+                alert("Credit card must be 16 digits");
+                return false;
+            }
+
+            if (!form.gender[0].checked && !form.gender[1].checked) {
+                alert("Please choose your gender");
+                return false;
+            }
+
+            if (document.getElementById("dept").selectedIndex === 0) {
+                alert("Please choose a department");
+                return false;
+            }
+
+            if (!document.getElementById("agree").checked) {
+                alert("Please accept the agreement");
+                return false;
+            }
+
+            
+            alert("Registration Successful!");
+            return true;
+        }
+    </script>
+
+</body>
+
+</html>
